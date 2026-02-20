@@ -128,10 +128,6 @@ nav .nav-bar .logo a {
   font-size: 18px;
 }
 
-.donate-action:hover {
-  background-color: #7aa4db;
-}
-
 @media (max-width: 790px) {
   nav .nav-bar .sidebarOpen {
     display: block;
