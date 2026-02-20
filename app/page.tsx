@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Icon } from "@iconify/react";
 import { useEffect, useRef, useState } from "react";
 
 const navLinks = [
@@ -15,94 +14,85 @@ const navLinks = [
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const headerRef = useRef<HTMLElement | null>(null);
+  const navRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!menuOpen) return;
-
     const handleClickOutside = (event: MouseEvent) => {
-      if (!headerRef.current) return;
-      if (!headerRef.current.contains(event.target as Node)) {
+      if (!navRef.current) return;
+      if (!navRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 
   return (
     <div className="page-root">
-      <header ref={headerRef} className="site-header">
-        <div className="nav-surface">
-          <nav className="nav-wrap">
-            <div className="logo-block">
+      <nav ref={navRef} className={menuOpen ? "active" : ""}>
+        <div className="nav-bar">
+          <i
+            className="bx bx-menu sidebarOpen"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+            role="button"
+          />
+          <span className="logo navLogo">
+            <a href="#home" className="logo-link">
               <Image
                 src="/images/logo-codez.png"
                 alt="Codez logo"
-                width={36}
-                height={36}
+                width={28}
+                height={28}
                 priority
               />
-              <span className="logo-text">Codez</span>
-            </div>
+              <span>Codez</span>
+            </a>
+          </span>
 
-            <div className="nav-links">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="nav-link"
-                >
-                  {link.label}
+          <div className="menu">
+            <div className="logo-toggle">
+              <span className="logo">
+                <a href="#home" className="logo-link">
+                  <Image
+                    src="/images/logo-codez.png"
+                    alt="Codez logo"
+                    width={24}
+                    height={24}
+                  />
+                  <span>Codez</span>
                 </a>
-              ))}
+              </span>
+              <i
+                className="bx bx-x siderbarClose"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+                role="button"
+              />
             </div>
 
-            <div className="nav-actions">
-              <a href="#donate" className="donate-button">
-                Donate
-              </a>
-              <button
-                type="button"
-                aria-label="Toggle navigation"
-                aria-expanded={menuOpen}
-                onClick={() => setMenuOpen((open) => !open)}
-                className={`hamburger-button ${menuOpen ? "is-open" : ""}`}
-              >
-                <span className="sr-only">Open menu</span>
-                <Icon
-                  icon={menuOpen ? "line-md:close" : "line-md:menu"}
-                  className="hamburger-icon"
-                  width={24}
-                  height={24}
-                />
-              </button>
-            </div>
-          </nav>
-        </div>
-
-        <div className="mobile-menu">
-          <div
-            className={`mobile-panel ${
-              menuOpen ? "mobile-panel-open" : "mobile-panel-closed"
-            }`}
-          >
-            <div className="mobile-links">
+            <ul className="nav-links">
               {navLinks.map((link) => (
-                <a key={link.label} href={link.href} className="nav-link">
-                  {link.label}
-                </a>
+                <li key={link.label}>
+                  <a href={link.href} onClick={() => setMenuOpen(false)}>
+                    {link.label}
+                  </a>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        </div>
-      </header>
 
-      <main className="home">
-        <section className="hero" id="home">
-          <div className="hero-text">
+          <a className="donate-action" href="https://saweria.co/mycodezid">
+            <i className="bx bx-donate-heart" aria-hidden="true" />
+            <span>Donate</span>
+          </a>
+        </div>
+      </nav>
+
+      <main className="home" id="home">
+        <section className="hero">
+          <div className="hero-left">
             <p className="hero-kicker">Hello,</p>
             <h1 className="hero-title">I am Codez</h1>
             <p className="hero-subtitle">Lorem ipsum dolor sit amet.</p>
@@ -117,29 +107,28 @@ export default function Home() {
             </div>
             <div className="hero-socials">
               <a
-                className="hero-social"
-                href="https://instagram.com"
+                className="hero-social hero-social--instagram"
+                href="https://www.instagram.com/dzamfbr/"
                 aria-label="Instagram"
               >
-                <Icon icon="mdi:instagram" width={18} height={18} />
+                <i className="bx bxl-instagram" />
               </a>
               <a
-                className="hero-social"
-                href="https://github.com"
+                className="hero-social hero-social--github"
+                href="https://github.com/dzamfbr"
                 aria-label="GitHub"
               >
-                <Icon icon="mdi:github" width={18} height={18} />
+                <i className="bx bxl-github" />
               </a>
             </div>
           </div>
-
-          <div className="hero-visual">
-            <div className="hero-ring">
+          <div className="hero-right">
+            <div className="hero-logo">
               <Image
                 src="/images/logo-codez.png"
                 alt="Codez logo"
-                width={220}
-                height={220}
+                width={360}
+                height={360}
                 priority
               />
             </div>
