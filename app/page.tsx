@@ -95,10 +95,10 @@ export default function Home() {
           <div className="hero-left">
             <p className="hero-kicker">Hello,</p>
             <h1 className="hero-title">I am Codez</h1>
-            <p className="hero-subtitle">Lorem ipsum dolor sit amet.</p>
+            <p className="hero-subtitle">Web Developer</p>
             <p className="hero-desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-              corrupti nesciunt veritatis quae odit ducimus?
+              Menyediakan layanan pembuatan dan pengembangan website yang cepat,
+              responsif, dan sesuai kebutuhan bisnis Anda.
             </p>
             <div className="hero-actions">
               <a className="hero-cta" href="#contact">

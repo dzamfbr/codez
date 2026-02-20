@@ -202,7 +202,7 @@ nav .nav-bar .logo a {
 }
 
 .hero-kicker {
-  font-size: 12px;
+  font-size: 22px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
@@ -212,6 +212,7 @@ nav .nav-bar .logo a {
   margin-top: 10px;
   font-size: 64px;
   font-weight: 600;
+  font-family: "Gveret Levin", "Poppins", sans-serif;
 }
 
 .hero-subtitle {

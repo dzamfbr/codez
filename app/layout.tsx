@@ -7,6 +7,7 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
   title: "Codez",
   description: "Deskripsi",
@@ -25,6 +26,10 @@ export default function RootLayout({
       <head>
         <link
           href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Gveret+Levin&display=swap"
           rel="stylesheet"
         />
       </head>
