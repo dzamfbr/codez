@@ -61,10 +61,7 @@ export default function Home() {
             </div>
 
             <div className="nav-actions">
-              <a
-                href="#donate"
-                className="donate-button"
-              >
+              <a href="#donate" className="donate-button">
                 Donate
               </a>
               <button
@@ -89,18 +86,12 @@ export default function Home() {
         <div className="mobile-menu">
           <div
             className={`mobile-panel ${
-              menuOpen
-                ? "mobile-panel-open"
-                : "mobile-panel-closed"
+              menuOpen ? "mobile-panel-open" : "mobile-panel-closed"
             }`}
           >
             <div className="mobile-links">
               {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="nav-link"
-                >
+                <a key={link.label} href={link.href} className="nav-link">
                   {link.label}
                 </a>
               ))}
@@ -113,15 +104,15 @@ export default function Home() {
         <section className="hero" id="home">
           <div className="hero-text">
             <p className="hero-kicker">Hello,</p>
-            <h1 className="hero-title">We Are Codez</h1>
-            <p className="hero-subtitle">Creative Developer & UI/UX Builder</p>
+            <h1 className="hero-title">I am Codez</h1>
+            <p className="hero-subtitle">Lorem ipsum dolor sit amet.</p>
             <p className="hero-desc">
-              2 Years Experience membuat produk digital yang fokus pada performa,
-              desain bersih, dan pengalaman pengguna yang jelas.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+              corrupti nesciunt veritatis quae odit ducimus?
             </p>
             <div className="hero-actions">
               <a className="hero-cta" href="#contact">
-                Let&apos;s talk →
+                Selengkapnya
               </a>
             </div>
             <div className="hero-socials">

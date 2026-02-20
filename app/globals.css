@@ -37,12 +37,16 @@ body {
 @layer components {
   .page-root {
     @apply min-h-screen font-sans text-zinc-900;
+    padding-top: 96px;
   }
 
   .site-header {
-    @apply sticky top-0 z-50;
-    position: sticky;
-    overflow-x: clip;
+    @apply z-50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
   }
 
   .nav-surface {
