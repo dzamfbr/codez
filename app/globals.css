@@ -20,7 +20,108 @@
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at 50% 50%, #314870 0%, #1e2e4f 100%);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .page-root {
+    @apply min-h-screen font-sans text-zinc-900;
+  }
+
+  .site-header {
+    @apply sticky top-0 z-50;
+  }
+
+  .nav-surface {
+    @apply backdrop-blur-md;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 16px auto 0;
+    width: calc(100% - 32px);
+    max-width: 1200px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .nav-wrap {
+    @apply mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3;
+  }
+
+  .logo-block {
+    @apply flex items-center gap-3;
+  }
+
+  .logo-text {
+    @apply text-lg font-semibold tracking-tight;
+    color: #ffffff;
+  }
+
+  .nav-links {
+    @apply hidden items-center gap-6 md:flex;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-white;
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 0;
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.85)
+    );
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: color 200ms ease, transform 200ms ease, background-size 220ms ease;
+  }
+
+  .nav-link:hover {
+    color: rgba(255, 255, 255, 0.85);
+    transform: translateY(-1px);
+    background-size: 100% 2px;
+  }
+
+  .nav-actions {
+    @apply flex items-center gap-3;
+  }
+
+  .donate-button {
+    @apply inline-flex h-10 items-center justify-center rounded-full px-5 text-sm font-semibold transition-colors;
+    background-color: #8fb3e2;
+    color: #ffffff;
+  }
+
+  .donate-button:hover {
+    background-color: #7aa4db;
+  }
+
+  .hamburger-button {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-full border border-transparent bg-transparent text-white transition-colors hover:bg-white/10 md:hidden;
+  }
+
+  .hamburger-icon {
+    @apply text-white transition-transform duration-200;
+  }
+
+  .mobile-menu {
+    @apply md:hidden;
+  }
+
+  .mobile-panel {
+    @apply mx-4 mt-2 overflow-hidden rounded-2xl border border-transparent p-4 shadow-lg backdrop-blur transition-all duration-200 ease-out;
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+
+  .mobile-panel-open {
+    @apply max-h-96 scale-100 opacity-100;
+  }
+
+  .mobile-panel-closed {
+    @apply max-h-0 scale-95 opacity-0 pointer-events-none;
+  }
+
+  .mobile-links {
+    @apply flex flex-col gap-3;
+  }
 }
