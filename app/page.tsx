@@ -76,12 +76,22 @@ const skillItems = [
   },
 ];
 
+const projectItems = [
+  {
+    name: "Website Topzyn",
+    description: "Deskripsi",
+    href: "#",
+    gradientClass: "from-blue-500 to-blue-600",
+    image: "/images/logo_project_topzyn.png",
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_20%_20%,#334b74_0%,#283a60_35%,#1f2a4a_100%)] pt-[90px]">
-      <nav className="fixed left-0 top-0 z-[100] h-[70px] w-full bg-[#242526]">
+      <nav className="fixed left-0 top-0 z-[120] h-[70px] w-full bg-[#242526]">
         <div className="mx-auto flex h-full w-full max-w-[1000px] items-center justify-between px-[30px]">
           <a
             href="#home"
@@ -124,18 +134,37 @@ export default function Home() {
 
             <button
               type="button"
-              aria-label="Open menu"
-              onClick={() => setMenuOpen(true)}
-              className="hidden cursor-pointer border-0 bg-transparent p-1 text-[25px] text-white max-[790px]:inline-flex"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMenuOpen((prev) => !prev)}
+              className="hidden cursor-pointer border-0 bg-transparent p-0 max-[790px]:inline-flex"
             >
-              <i className="bx bx-menu" />
+              <svg
+                viewBox="0 0 32 32"
+                className={`h-[3em] transition-transform duration-[600ms] [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
+                  menuOpen ? "-rotate-45" : ""
+                }`}
+                aria-hidden="true"
+              >
+                <path
+                  d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+                  className={`fill-none stroke-white [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:3] transition-[stroke-dasharray,stroke-dashoffset] duration-[600ms] [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
+                    menuOpen
+                      ? "[stroke-dasharray:20_300] [stroke-dashoffset:-32.42]"
+                      : "[stroke-dasharray:12_63]"
+                  }`}
+                />
+                <path
+                  d="M7 16 27 16"
+                  className="fill-none stroke-white [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:3] transition-[stroke-dasharray,stroke-dashoffset] duration-[600ms] [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
+                />
+              </svg>
             </button>
           </div>
         </div>
       </nav>
 
       <div
-        className={`fixed inset-0 z-[90] bg-black/35 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-[90] bg-black/35 transition-opacity duration-300 min-[791px]:hidden ${
           menuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -145,14 +174,15 @@ export default function Home() {
       />
 
       <aside
-        className={`fixed left-0 top-0 z-[110] h-full w-[220px] bg-[#242526] p-5 transition-transform duration-300 md:hidden ${
+        className={`fixed left-0 top-0 z-[110] h-full w-[220px] bg-[#242526] p-5 transition-transform duration-300 min-[791px]:hidden ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="mb-5 flex items-center justify-between">
+        <div className="mb-5 flex items-center">
           <a
             href="#home"
             className="inline-flex items-center gap-2 text-white no-underline"
+            onClick={() => setMenuOpen(false)}
           >
             <Image
               src="/images/logo-codez.png"
@@ -162,14 +192,6 @@ export default function Home() {
             />
             <span className="text-[20px] font-medium">Codez</span>
           </a>
-          <button
-            type="button"
-            aria-label="Close menu"
-            onClick={() => setMenuOpen(false)}
-            className="border-0 bg-transparent p-1 text-[24px] text-white"
-          >
-            <i className="bx bx-x" />
-          </button>
         </div>
 
         <ul className="flex flex-col pt-2">
@@ -318,6 +340,58 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="project"
+          className="mt-[120px] flex justify-center pb-14 max-[900px]:mt-[90px]"
+        >
+          <div className="w-full max-w-[1100px] text-center text-white">
+            <h2 className="relative mb-8 inline-block pb-[10px] text-[38px] font-semibold tracking-[0.01em] after:absolute after:bottom-0 after:left-1/2 after:h-[3px] after:w-[84px] after:-translate-x-1/2 after:rounded-full after:bg-[#8fb3e2] max-[900px]:text-[30px]">
+              Project
+            </h2>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-x-7 gap-y-12">
+              {projectItems.map((project) => (
+                <article
+                  key={project.name}
+                  className="relative mx-auto flex w-full min-w-0 max-w-[340px] flex-col rounded-xl bg-white bg-clip-border text-left text-gray-700 shadow-md min-[701px]:w-[calc(50%-14px)] min-[1101px]:w-[calc(33.333%-19px)]"
+                >
+                  <div
+                    className={`relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-gradient-to-r bg-clip-border text-white shadow-lg shadow-blue-500/40 ${project.gradientClass}`}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={`${project.name} preview`}
+                      fill
+                      className="object-contain p-2"
+                    />
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${project.gradientClass} opacity-25`}
+                    />
+                  </div>
+
+                  <div className="p-6">
+                    <h5 className="mb-2 block text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased">
+                      {project.name}
+                    </h5>
+                    <p className="block text-base font-light leading-relaxed text-inherit antialiased">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="p-6 pt-0">
+                    <a
+                      href={project.href}
+                      className="inline-block select-none rounded-lg bg-blue-500 px-6 py-3 text-center align-middle text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+                    >
+                      Read More
+                    </a>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
