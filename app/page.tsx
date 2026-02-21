@@ -1,5 +1,6 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { useState } from "react";
@@ -8,7 +9,7 @@ const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skils", href: "#skils" },
-  { label: "Services", href: "#services" },
+  { label: "Project", href: "#project" },
   { label: "Testimoni", href: "#testimoni" },
   { label: "Contact", href: "#contact" },
 ];
@@ -76,7 +77,7 @@ const skillItems = [
   },
 ];
 
-const serviceItems = [
+const projectItems = [
   {
     name: "TopZyn",
     description:
@@ -87,8 +88,38 @@ const serviceItems = [
   },
 ];
 
+const testimonialItems = [
+  {
+    name: "Name",
+    email: "email@gmail.com",
+    feedback: "Feedback Description",
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+  const goToPrevTestimonial = () => {
+    setTestimonialIndex((prev) =>
+      prev === 0 ? testimonialItems.length - 1 : prev - 1,
+    );
+  };
+
+  const goToNextTestimonial = () => {
+    setTestimonialIndex((prev) =>
+      prev === testimonialItems.length - 1 ? 0 : prev + 1,
+    );
+  };
+
+  const maskEmail = (email: string) => {
+    const [localPart, domainPart] = email.split("@");
+    if (!domainPart) return email;
+
+    const firstTwo = localPart.slice(0, 2);
+    const lastTwo = localPart.length > 2 ? localPart.slice(-2) : "";
+    return `${firstTwo}*****${lastTwo}@${domainPart}`;
+  };
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_20%_20%,#334b74_0%,#283a60_35%,#1f2a4a_100%)] pt-[90px]">
@@ -216,11 +247,11 @@ export default function Home() {
       >
         <section className="mt-[70px] grid grid-cols-[1.2fr_0.8fr] items-center gap-20 max-[900px]:grid-cols-1">
           <div className="text-white">
-            <p className="text-[22px] uppercase tracking-[0.3em] text-white/70">
+            <p className="text-[18px] uppercase tracking-[0.3em] text-white/70">
               Hello,
             </p>
             <h1 className="mt-[10px] text-[64px] font-semibold [font-family:'Gveret_Levin',Poppins,sans-serif]">
-              I am Codez
+              I am CODEZ
             </h1>
             <p className="mt-4 text-2xl font-medium text-white/85">
               Web Developer
@@ -346,52 +377,153 @@ export default function Home() {
         </section>
 
         <section
-          id="services"
+          id="project"
           className="mt-[120px] flex justify-center pb-14 max-[900px]:mt-[90px]"
         >
           <div className="w-full max-w-[1100px] text-center text-white">
             <h2 className="relative mb-8 inline-block pb-[10px] text-[38px] font-semibold tracking-[0.01em] after:absolute after:bottom-0 after:left-1/2 after:h-[3px] after:w-[84px] after:-translate-x-1/2 after:rounded-full after:bg-[#8fb3e2] max-[900px]:text-[30px]">
-              Services
+              Project
             </h2>
 
             <div className="mt-6 flex flex-wrap justify-center gap-x-7 gap-y-12 max-[700px]:gap-x-3 max-[700px]:gap-y-6">
-              {serviceItems.map((service) => (
+              {projectItems.map((project) => (
                 <article
-                  key={service.name}
-                  className="relative mx-auto flex w-[calc(50%-14px)] min-w-0 max-w-[220px] flex-col rounded-xl bg-white bg-clip-border text-left text-gray-700 shadow-md min-[701px]:max-w-[340px] min-[701px]:w-[calc(50%-14px)] min-[1101px]:w-[calc(33.333%-19px)]"
+                  key={project.name}
+                  className="group relative mx-auto flex w-[calc(50%-14px)] min-w-0 max-w-[220px] flex-col overflow-hidden rounded-3xl border border-[#d8e4f7]/90 bg-[linear-gradient(165deg,#ffffff_0%,#edf4ff_52%,#e6efff_100%)] text-left text-gray-700 shadow-[0_18px_40px_rgba(10,23,52,0.2)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#b7cdf1] hover:shadow-[0_25px_50px_rgba(10,23,52,0.28)] min-[701px]:max-w-[340px] min-[701px]:w-[calc(50%-14px)] min-[1101px]:w-[calc(33.333%-19px)]"
                 >
+                  <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#8fb3e2]/70 to-transparent" />
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#8fb3e2]/30 blur-2xl" />
+                  <div className="pointer-events-none absolute -bottom-12 -left-10 h-24 w-24 rounded-full bg-[#4f72c5]/20 blur-2xl" />
                   <div
-                    className={`relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-gradient-to-r bg-clip-border text-white shadow-lg shadow-blue-500/40 max-[700px]:mx-2 max-[700px]:-mt-4 max-[700px]:h-24 ${service.gradientClass}`}
+                    className={`relative mx-4 -mt-6 h-44 overflow-hidden rounded-2xl bg-gradient-to-r bg-clip-border text-white shadow-[0_12px_24px_rgba(57,93,163,0.35)] ring-1 ring-white/70 max-[700px]:mx-2 max-[700px]:-mt-4 max-[700px]:h-24 ${project.gradientClass}`}
                   >
                     <Image
-                      src={service.image}
-                      alt={`${service.name} preview`}
+                      src={project.image}
+                      alt={`${project.name} preview`}
                       fill
                       className="object-contain p-2"
                     />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0)_45%)]" />
                     <div
-                      className={`absolute inset-0 bg-gradient-to-r ${service.gradientClass} opacity-25`}
+                      className={`absolute inset-0 bg-gradient-to-r ${project.gradientClass} opacity-20`}
                     />
                   </div>
 
                   <div className="p-6 max-[700px]:p-3">
-                    <h5 className="mb-2 block text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased max-[700px]:mb-1 max-[700px]:text-sm">
-                      {service.name}
+                    <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6d8ec2] max-[700px]:text-[9px]">
+                      Featured Project
+                    </p>
+                    <h5 className="mb-2 block text-xl font-semibold leading-snug tracking-normal text-[#1d2d4c] antialiased max-[700px]:mb-1 max-[700px]:text-sm">
+                      {project.name}
                     </h5>
-                    <p className="block text-base font-light leading-relaxed text-inherit antialiased max-[700px]:text-[11px] max-[700px]:leading-[1.45]">
-                      {service.description}
+                    <p className="block text-base font-light leading-relaxed text-[#455b82] antialiased max-[700px]:text-[11px] max-[700px]:leading-[1.45]">
+                      {project.description}
                     </p>
                   </div>
 
                   <div className="p-6 pt-0 max-[700px]:p-3 max-[700px]:pt-0">
                     <a
-                      href={service.href}
-                      className="inline-block select-none rounded-lg bg-blue-500 px-6 py-3 text-center align-middle text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none max-[700px]:rounded-md max-[700px]:px-3 max-[700px]:py-2 max-[700px]:text-[10px]"
+                      href={project.href}
+                      className="inline-flex select-none items-center justify-center rounded-lg bg-[linear-gradient(135deg,#4c7bcf,#3a63ad)] px-6 py-3 text-center align-middle text-xs font-bold uppercase tracking-[0.04em] text-white shadow-[0_10px_20px_rgba(57,93,163,0.3)] transition-all hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_14px_28px_rgba(57,93,163,0.38)] focus:opacity-[0.9] focus:shadow-none active:opacity-[0.85] active:shadow-none max-[700px]:rounded-md max-[700px]:px-3 max-[700px]:py-2 max-[700px]:text-[10px]"
                     >
                       View Website
                     </a>
                   </div>
                 </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="testimoni"
+          className="mt-[120px] flex justify-center pb-14 max-[900px]:mt-[90px]"
+        >
+          <div className="w-full max-w-[920px] text-center text-white">
+            <h2 className="relative mb-8 inline-block pb-[10px] text-[38px] font-semibold tracking-[0.01em] after:absolute after:bottom-0 after:left-1/2 after:h-[3px] after:w-[84px] after:-translate-x-1/2 after:rounded-full after:bg-[#8fb3e2] max-[900px]:text-[30px]">
+              Testimoni
+            </h2>
+
+            <div className="relative mx-auto mt-4 w-full max-w-[760px] overflow-hidden rounded-[24px] border border-[#8fb3e2]/45 bg-[linear-gradient(135deg,rgba(26,38,68,0.88),rgba(13,20,38,0.9))] px-8 py-8 shadow-[0_24px_60px_rgba(6,10,24,0.45)] backdrop-blur-sm max-[700px]:px-4 max-[700px]:py-6">
+              <div className="pointer-events-none absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-[#8fb3e2]/80 to-transparent" />
+              <div className="pointer-events-none absolute -left-20 -top-20 h-52 w-52 rounded-full bg-[#8fb3e2]/15 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-24 -right-24 h-60 w-60 rounded-full bg-[#5678c5]/20 blur-3xl" />
+              <button
+                type="button"
+                aria-label="Previous testimonial"
+                onClick={goToPrevTestimonial}
+                className="absolute left-3 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#8fb3e2]/35 bg-[#1e2a4b]/80 text-[#8fb3e2] transition hover:bg-[#2b3f72] hover:text-white max-[700px]:left-1 max-[700px]:h-8 max-[700px]:w-8"
+              >
+                <Icon
+                  icon="line-md:chevron-left"
+                  className="text-[26px] max-[700px]:text-[20px]"
+                  aria-hidden="true"
+                />
+              </button>
+
+              <button
+                type="button"
+                aria-label="Next testimonial"
+                onClick={goToNextTestimonial}
+                className="absolute right-3 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#8fb3e2]/35 bg-[#1e2a4b]/80 text-[#8fb3e2] transition hover:bg-[#2b3f72] hover:text-white max-[700px]:right-1 max-[700px]:h-8 max-[700px]:w-8"
+              >
+                <Icon
+                  icon="line-md:chevron-right"
+                  className="text-[26px] max-[700px]:text-[20px]"
+                  aria-hidden="true"
+                />
+              </button>
+
+              <div className="overflow-hidden">
+                <div
+                  className="flex transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
+                  style={{
+                    transform: `translateX(-${testimonialIndex * 100}%)`,
+                  }}
+                >
+                  {testimonialItems.map((item) => (
+                    <article
+                      key={item.name}
+                      className="w-full shrink-0 px-10 text-center max-[700px]:px-6"
+                    >
+                      <div className="mx-auto w-fit rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(143,179,226,0.35),rgba(143,179,226,0)_70%)] p-1.5">
+                        <div className="flex h-[86px] w-[86px] items-center justify-center rounded-full border-[3px] border-[#8fb3e2] bg-white/10 shadow-[0_0_20px_rgba(143,179,226,0.25)]">
+                          <Icon
+                            icon="line-md:account"
+                            className="text-[48px] text-white"
+                            aria-hidden="true"
+                          />
+                        </div>
+                      </div>
+
+                      <h3 className="mt-4 text-[22px] font-semibold text-white">
+                        {item.name}
+                      </h3>
+                      <p className="mt-1 text-sm font-medium tracking-[0.04em] text-[#8fb3e2]">
+                        {maskEmail(item.email)}
+                      </p>
+                      <p className="mx-auto mt-4 max-w-[600px] text-[15px] leading-[1.75] text-white/80 max-[700px]:text-[13px]">
+                        {item.feedback}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 flex items-center justify-center gap-2">
+              {testimonialItems.map((item, index) => (
+                <button
+                  key={item.name}
+                  type="button"
+                  aria-label={`Go to testimonial ${index + 1}`}
+                  onClick={() => setTestimonialIndex(index)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    testimonialIndex === index
+                      ? "w-6 bg-[#8fb3e2]"
+                      : "w-2.5 bg-white/40 hover:bg-white/70"
+                  }`}
+                />
               ))}
             </div>
           </div>
