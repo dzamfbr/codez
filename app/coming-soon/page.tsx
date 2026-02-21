@@ -1,3 +1,8 @@
+"use client";
+
+import { Icon } from "@iconify/react";
+import Link from "next/link";
+
 export default function ComingSoonPage() {
   const animBase =
     "[animation-duration:var(--dur)] [animation-iteration-count:infinite] [animation-timing-function:cubic-bezier(0.83,0,0.17,1)]";
@@ -178,6 +183,13 @@ export default function ComingSoonPage() {
         <h1 className="text-center text-2xl font-semibold uppercase tracking-[0.3em] text-white/90">
           Coming Soon
         </h1>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2 text-sm font-semibold text-white transition hover:bg-white/20"
+        >
+          <Icon icon="line-md:chevron-left" className="text-xl" aria-hidden="true" />
+          <span>Back</span>
+        </Link>
       </div>
     </main>
   );
