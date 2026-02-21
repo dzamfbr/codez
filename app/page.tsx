@@ -264,7 +264,7 @@ export default function Home() {
             <div className="mt-7">
               <a
                 className="inline-flex items-center justify-center rounded-[30px] bg-[#8fb3e2] px-8 py-[14px] text-base font-semibold text-[#10131c] no-underline"
-                href="#contact"
+                href="#about"
               >
                 Selengkapnya
               </a>
