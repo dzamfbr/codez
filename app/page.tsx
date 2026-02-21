@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skils", href: "#skils" },
-  { label: "Project", href: "#project" },
+  { label: "Services", href: "#services" },
   { label: "Testimoni", href: "#testimoni" },
   { label: "Contact", href: "#contact" },
 ];
@@ -76,11 +76,12 @@ const skillItems = [
   },
 ];
 
-const projectItems = [
+const serviceItems = [
   {
-    name: "Website Topzyn",
-    description: "Deskripsi",
-    href: "#",
+    name: "TopZyn",
+    description:
+      "Website Topzyn menyediakan layanan top up game dan produk digital secara online dengan sistem yang cepat dan mudah. Di dalamnya terdapat pilihan game yang lengkap, detail produk, sistem pemesanan sederhana, serta proses pembayaran yang praktis.",
+    href: "/coming-soon",
     gradientClass: "from-blue-500 to-blue-600",
     image: "/images/logo_project_topzyn.png",
   },
@@ -345,49 +346,49 @@ export default function Home() {
         </section>
 
         <section
-          id="project"
+          id="services"
           className="mt-[120px] flex justify-center pb-14 max-[900px]:mt-[90px]"
         >
           <div className="w-full max-w-[1100px] text-center text-white">
             <h2 className="relative mb-8 inline-block pb-[10px] text-[38px] font-semibold tracking-[0.01em] after:absolute after:bottom-0 after:left-1/2 after:h-[3px] after:w-[84px] after:-translate-x-1/2 after:rounded-full after:bg-[#8fb3e2] max-[900px]:text-[30px]">
-              Project
+              Services
             </h2>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-x-7 gap-y-12">
-              {projectItems.map((project) => (
+            <div className="mt-6 flex flex-wrap justify-center gap-x-7 gap-y-12 max-[700px]:gap-x-3 max-[700px]:gap-y-6">
+              {serviceItems.map((service) => (
                 <article
-                  key={project.name}
-                  className="relative mx-auto flex w-full min-w-0 max-w-[340px] flex-col rounded-xl bg-white bg-clip-border text-left text-gray-700 shadow-md min-[701px]:w-[calc(50%-14px)] min-[1101px]:w-[calc(33.333%-19px)]"
+                  key={service.name}
+                  className="relative mx-auto flex w-[calc(50%-14px)] min-w-0 max-w-[220px] flex-col rounded-xl bg-white bg-clip-border text-left text-gray-700 shadow-md min-[701px]:max-w-[340px] min-[701px]:w-[calc(50%-14px)] min-[1101px]:w-[calc(33.333%-19px)]"
                 >
                   <div
-                    className={`relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-gradient-to-r bg-clip-border text-white shadow-lg shadow-blue-500/40 ${project.gradientClass}`}
+                    className={`relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-gradient-to-r bg-clip-border text-white shadow-lg shadow-blue-500/40 max-[700px]:mx-2 max-[700px]:-mt-4 max-[700px]:h-24 ${service.gradientClass}`}
                   >
                     <Image
-                      src={project.image}
-                      alt={`${project.name} preview`}
+                      src={service.image}
+                      alt={`${service.name} preview`}
                       fill
                       className="object-contain p-2"
                     />
                     <div
-                      className={`absolute inset-0 bg-gradient-to-r ${project.gradientClass} opacity-25`}
+                      className={`absolute inset-0 bg-gradient-to-r ${service.gradientClass} opacity-25`}
                     />
                   </div>
 
-                  <div className="p-6">
-                    <h5 className="mb-2 block text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased">
-                      {project.name}
+                  <div className="p-6 max-[700px]:p-3">
+                    <h5 className="mb-2 block text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased max-[700px]:mb-1 max-[700px]:text-sm">
+                      {service.name}
                     </h5>
-                    <p className="block text-base font-light leading-relaxed text-inherit antialiased">
-                      {project.description}
+                    <p className="block text-base font-light leading-relaxed text-inherit antialiased max-[700px]:text-[11px] max-[700px]:leading-[1.45]">
+                      {service.description}
                     </p>
                   </div>
 
-                  <div className="p-6 pt-0">
+                  <div className="p-6 pt-0 max-[700px]:p-3 max-[700px]:pt-0">
                     <a
-                      href={project.href}
-                      className="inline-block select-none rounded-lg bg-blue-500 px-6 py-3 text-center align-middle text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+                      href={service.href}
+                      className="inline-block select-none rounded-lg bg-blue-500 px-6 py-3 text-center align-middle text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none max-[700px]:rounded-md max-[700px]:px-3 max-[700px]:py-2 max-[700px]:text-[10px]"
                     >
-                      Read More
+                      View Website
                     </a>
                   </div>
                 </article>
